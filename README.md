@@ -31,7 +31,7 @@
 									Finish
 			
 
-		!!!! CMDni pinle taskbara
+		!!!! PIN CMD TO TASKBAR
 		
 		2. Run the malicious executable:
 
@@ -50,6 +50,12 @@
 							
 		5. Task Managerden taski sonlandirmaq ucun:
 				Vm in ozunde "Help" in saginda ikinci icon clickle, Task Manageri sec, acilan windowda svchost.exe(32 bit) tap ve endtask et.
+				Refresh Desktop
+				
+		### RegistryChangeView
+			Open 
+			compare registry
+			Check HKEY_CURRENT_USER\Software or HKEY_LOCAL_MACHINE\Software (search for .....run)
 				
 		### Autopsy: disk image
 					Create New Case:
@@ -73,18 +79,22 @@
 
 
 		### Volatility: memory dump
+		Copy memdump(Z:) and paste it in volatility folder
+		
+		# Help
+				vol.py -h
 
-		#clarifing that which profile will be used:
+		#u It list the processes of a system:
 
-				vol3.py -f ___.mem(path for memory dump) imageinfo
-
-		#using this command you check all profiles which were found in "imageinfo" section. It list the processes of a system and you wil find correct profile:
-
-				vol3.py -f ___.mem --profile=Profile(exp. WinXPSP2x86) pslist 
+				vol.py -f ___.mem windows.pslist.PsList
 
 		#viewing the process listing in tree form and using the same technique as pslist:
 
-				vol3.py -f ___.mem --profile=Profile pstree 
+				vol.py -f ___.mem windows.pstree.PsTree
+	
+		WoW64 is a subsystem of the Windows operating system capable of running 32-bit applications on 64-bit Windows:
+			Malicious process:
+				vol.py -f ___.mem windows.pstree.PsTree | findstr True
 
 		#searching  for commands that attackers entered through a console shell (cmd.exe):
 
