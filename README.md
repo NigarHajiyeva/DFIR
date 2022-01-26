@@ -37,6 +37,11 @@
 					Click Capture Memory
 
 ### Autopsy: disk image
+			Create New Case:
+				Case Name:
+				Base Directory:
+				Case Type: Single-user
+				Case wil be stored in the following directory:
         
 
 ### Volatility: memory dump
