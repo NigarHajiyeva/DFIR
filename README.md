@@ -47,9 +47,11 @@
 ### Volatility: memory dump
 
 #clarifing that which profile will be used.
+
 vol3.py -f ___.mem(path for memory dump) imageinfo 
 
 #using this command you check all profiles which were found in "imageinfo" section. It list the processes of a system and you wil find correct profile.
+
 vol3.py -f ___.mem --profile=Profile(exp. WinXPSP2x86) pslist 
 
 #viewing the process listing in tree form and using the same technique as pslist
