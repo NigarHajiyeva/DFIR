@@ -1,4 +1,15 @@
 	
+		1.RegistryChangesView (before everything)
+			Create snapshots, differencial analysis
+		2. ProcMon
+			Ability to apply filters
+		3. FileActi ityView
+		4. Volatility,. Pslist
+		5. Ftk imager
+		6. Autopsy
+		7. PeStudio (before running malware, open malware.exe in pestudio)
+			Get executable properties, Get imported functions
+	
 	Before everything:
 		Open RegistryChangeView
 		Registry Data Source 1: Saved Registry Snapshot
@@ -95,55 +106,21 @@
 		WoW64 is a subsystem of the Windows operating system capable of running 32-bit applications on 64-bit Windows:
 			Malicious process:
 				vol.py -f ___.mem windows.pstree.PsTree | findstr True
+		
+		#memdump:
 
-		#searching  for commands that attackers entered through a console shell (cmd.exe):
+			vol.py -f “/path/to/file” -o “/path/to/dir” windows.memmap.Memmap ‑‑dump ‑‑pid <PID>
 
-				vol3.py -f ___.mem --profile=Profile cmdscan 
+		#procdump:
+			vol.py -f “/path/to/file” -o “/path/to/dir” windows.dumpfiles ‑‑pid <PID>
+		
+		
+		
+		### bstrings
+			copy pid....dmp file to C:\4n6\Zimmerman\
+			bstrings.exe -f pid....dmp
+			
+			# write to file:
+				bstrings.exe -f pid....dmp -o .\res.txt
+		
 
-		#Similar to cmdscan. It not only prints the commands attackers typed, but it collects the entire screen buffer (input and output):
-
-				vol3.py -f ___.mem --profile=Profile consoles 
-
-		#viewing TCP connections that were active at the time of the memory acquisition:
-
-				vol3.py -f ___.mem --profile=Profile connections 
-
-		#finding artifacts from previous connections that have since been terminated, in addition to the active ones:
-
-				vol3.py -f ___.mem --profile=Profile connscan 
-
-		#detecting listening sockets for any protocol (TCP, UDP, RAW, etc):
-
-				vol3.py -f ___.mem --profile=Profile sockets 
-
-		#scanning for network artifacts:
-
-				vol3.py -f ___.mem --profile=Profile netscan 
-
-		#dumping a process's executable:
-
-				vol3.py -f ___.mem --profile=Profile procdump -D DIR(exp. /test_dump) --pid=PID(exp. 356) 
-
-
-		 *note1 ->  -D DIR (or --dump-dir=DIR) -> specifing an output directory 
-		 *note2 -> -p PID (or --pid=PID) ->displaying a a specific process instead of all processes
-
-		#showing you exactly which pages are memory resident:
-
-				vol3.py -f ___.mem --profile=Profile memmap 
-
-		#extracting all memory resident pages in a process:
-
-				vol3.py -f ___.mem --profile=Profile memdump --pid=PID -D DIR
-
-		#showing process privileges:
-
-				vol3.py -f ___.mem privs --profile=Profile 
-
-		#displaying a process's loaded DLL:
-
-				vol3.py -f ___.mem --profile=Profile dlllist 
-
-		#extracting a DLL from a process's memory space and dump it to disk for analysis:
-
-				vol3.py -f ___.mem --profile=Profile dlldump -D DIR 
