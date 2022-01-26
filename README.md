@@ -46,7 +46,7 @@
 
 ### Volatility: memory dump
 
-#clarifing that which profile will be used.
+# clarifing that which profile will be used.
 
 `vol3.py -f ___.mem(path for memory dump) imageinfo`
 
